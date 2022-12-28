@@ -263,7 +263,7 @@ class Protocol(asyncio.Protocol, Publisher):
             self._write()
 
     def resume_writing(self):
-        self.data_drained()
+        self._data_drained()
 
     def pause_writing(self):
         self._allowed_to_write = False
@@ -284,7 +284,7 @@ class Protocol(asyncio.Protocol, Publisher):
             except RuntimeError:
                 pass
 
-    def data_drained(self):
+    def _data_drained(self):
         time_ = self.event_ftime()
         self._allowed_to_write = True
         bytes_data, reply_timeout = self._out_buffer.popleft()
