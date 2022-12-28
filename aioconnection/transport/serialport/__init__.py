@@ -7,10 +7,3 @@ from .core import (
 )
 
 from .transport import SerialTransport
-
-__all__ = ['SerialSettings',
-           'StopBits',
-           'ByteSize',
-           'Parity',
-           'serialports_list',
-           'SerialTransport']

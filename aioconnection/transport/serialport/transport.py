@@ -68,7 +68,6 @@ class SerialTransport(asyncio.Transport):
     def port(self, port: str):
         if port != self._port:
             self._port = port
-            self._extra['serialname'] = port
             self._loop.create_task(self._change_port())
 
     @staticmethod
@@ -87,6 +86,7 @@ class SerialTransport(asyncio.Transport):
         self._close()
         await self._task_done(self._close_task)
         self._driver.port = self._port
+        self._extra['serialname'] = self._port
         if is_active:
             self.open()
 
